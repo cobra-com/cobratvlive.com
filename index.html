@@ -8,8 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
         body { background-color: #0d0d0e; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
         .card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 24px; padding: 32px 24px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .avatar-container { position: relative; width: 96dp; height: 96px; margin: 0 auto 16px; }
-        .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2px solid #ff0055; }
+        .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2px solid #ff0055; margin-bottom: 16px; }
         .name { font-size: 20px; font-weight: bold; margin-bottom: 4px; }
         .username { color: #ff0055; font-size: 14px; margin-bottom: 12px; }
         .bio { font-size: 13px; color: #a1a1aa; line-height: 1.5; margin-bottom: 24px; }
@@ -23,19 +22,20 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 
-    <!-- Firebase Web SDK (v9) -->
+    <!-- Firebase Web SDK CDN (v9) -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
         import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-        // ⚠️ استبدل البيانات دي ببيانات مشروعك من Firebase Console (Project Settings -> Web App)
+        // 🔥 بيانات مشروعك الحقيقية
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyCZzSbLegFJ_xaVVqtFWFUCu2WFOd42cF0",
+            authDomain: "cobra-tv-b1231.firebaseapp.com",
+            projectId: "cobra-tv-b1231",
+            storageBucket: "cobra-tv-b1231.firebasestorage.app",
+            messagingSenderId: "73044924945",
+            appId: "1:73044924945:web:4ed40ee2b6463b574e2fb0",
+            measurementId: "G-X5JQH06QNK"
         };
 
         const app = initializeApp(firebaseConfig);
@@ -46,21 +46,21 @@
             const userQuery = urlParams.get('u');
 
             if (!userQuery) {
-                showError("لم يتم العثور على اسم المستخدم");
+                showError("الرابط غير صحيح أو لا يحتوي على معرف");
                 return;
             }
 
             try {
                 let userData = null;
 
-                // 1. البحث كـ Document ID أولاً
+                // 1. تجربة جلب المستند بـ UID مباشر
                 const docRef = doc(db, "users", userQuery);
                 const docSnap = await getDoc(docRef);
 
                 if (docSnap.exists()) {
                     userData = docSnap.data();
                 } else {
-                    // 2. لو مش Document ID ابحث عنه كـ username
+                    // 2. تجربة جلب المستند بالبحث عن حقل الـ username
                     const q = query(collection(db, "users"), where("username", "==", userQuery));
                     const querySnapshot = await getDocs(q);
                     if (!querySnapshot.empty) {
@@ -74,17 +74,18 @@
                     showError("المستخدم غير موجود");
                 }
             } catch (error) {
-                console.error("Error fetching user data:", error);
-                showError("حدث خطأ أثناء تحميل البيانات");
+                console.error("Firebase Error:", error);
+                showError("حدث خطأ أثناء تحميل البيانات من الفايربيز");
             }
         }
 
-        function renderUserData(data, fallbackQuery) {
+        function renderUserData(data, userId) {
             document.getElementById("loader").style.display = "none";
             document.getElementById("content").style.display = "block";
 
-            document.getElementById("displayName").innerText = data.displayName || data.name || fallbackQuery;
-            document.getElementById("username").innerText = "@" + (data.username || fallbackQuery);
+            // جلب الاسم والصورة والملاحظات بحسب الحقول الموجودة لديك في Firestore
+            document.getElementById("displayName").innerText = data.name || data.displayName || userId;
+            document.getElementById("username").innerText = "@" + (data.username || "user");
             document.getElementById("bio").innerText = data.bio || "مرحباً بك في بروفايلي على COBRA TV 🚀";
             
             // الصورة الشخصية
@@ -92,14 +93,13 @@
                 document.getElementById("avatar").src = data.photoUrl || data.avatarUrl;
             }
 
-            // الأرقام الحقيقية من فايربيز (لو مش موجودة يعرض 0)
-            document.getElementById("followersCount").innerText = formatNumber(data.followersCount || data.followers || 0);
-            document.getElementById("followingCount").innerText = formatNumber(data.followingCount || data.following || 0);
-            document.getElementById("likesCount").innerText = formatNumber(data.likesCount || data.likes || 0);
+            // العدادات
+            document.getElementById("followersCount").innerText = data.followersCount || 0;
+            document.getElementById("followingCount").innerText = data.followingCount || 0;
+            document.getElementById("likesCount").innerText = data.likesCount || 0;
 
-            // رابط فتح التطبيق Deep Link
-            const appDeepLink = `cobratv://user?uid=${data.uid || fallbackQuery}`;
-            document.getElementById("openAppBtn").href = appDeepLink;
+            // رابط فتح التطبيق
+            document.getElementById("openAppBtn").href = `cobratv://user?uid=${data.uid || userId}`;
         }
 
         function showError(msg) {
@@ -108,12 +108,6 @@
             document.getElementById("displayName").innerText = msg;
             document.getElementById("username").innerText = "";
             document.getElementById("bio").innerText = "";
-        }
-
-        function formatNumber(num) {
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return num;
         }
 
         window.onload = fetchUserProfile;
@@ -125,9 +119,7 @@
         <div id="loader" class="loader"></div>
 
         <div id="content" style="display: none;">
-            <div class="avatar-container">
-                <img id="avatar" class="avatar" src="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png" alt="Avatar">
-            </div>
+            <img id="avatar" class="avatar" src="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png" alt="Avatar">
 
             <h2 id="displayName" class="name">--</h2>
             <p id="username" class="username">--</p>
