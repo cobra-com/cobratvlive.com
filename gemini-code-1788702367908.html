@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cobra TV</title>
+    
+    <!-- Open Graph Tags للمعاينة في واتساب وتليجرام -->
+    <meta property="og:site_name" content="Cobra TV" />
+    <meta property="og:type" content="website" />
+    <meta id="og-title" property="og:title" content="Cobra TV - تطبيق المشاهدة والتواصيل" />
+    <meta id="og-desc" property="og:description" content="شاهد البث المباشر، الأفلام، والمنشورات على تطبيق Cobra TV" />
+    <meta id="og-image" property="og:image" content="https://cobratvapp-com.github.io/cobratv.com/preview-default.png" />
+
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .card {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid #333;
+        }
+        .btn {
+            background: #e50914;
+            color: #white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2 id="display-title">جاري التوجيه إلى Cobra TV...</h2>
+        <p id="display-desc">إذا لم يتم فتح التطبيق تلقائياً، اضغط على الزر أدناه.</p>
+        <a id="app-link" href="#" class="btn">فتح في التطبيق</a>
+    </div>
+
+    <script>
+        // قراءة مسار الرابط لتحويله للتطبيق
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type'); // u (user), p (post), m (media), room (room)
+        const id = urlParams.get('id');
+
+        if (type && id) {
+            // رابط Deep Link الداخلي للتطبيق
+            const appDeepLink = `cobratv://${type}/${id}`;
+            document.getElementById('app-link').href = appDeepLink;
+            
+            // محاولة فتح التطبيق تلقائياً
+            window.location.href = appDeepLink;
+        }
+    </script>
+</body>
+</html>
