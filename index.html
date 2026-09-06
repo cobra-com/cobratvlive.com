@@ -3,305 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Open Graph / WhatsApp Preview Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Cobra TV">
-    <meta property="og:title" id="og-title" content="شاهد ملف الشخص على Cobra TV">
-    <meta property="og:description" id="og-desc" content="تابع أحدث مقاطع الفيديو والمنشورات على تطبيق كوبرى تي في">
-    <meta property="og:image" id="og-image" content="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" id="twitter-title" content="شاهد ملف الشخص على Cobra TV">
-    <meta name="twitter:description" id="twitter-desc" content="تابع أحدث مقاطع الفيديو والمنشورات على تطبيق كوبرى تي في">
-    <meta name="twitter:image" id="twitter-image" content="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png">
-
-    <title id="page-title">Cobra TV - كوبرى تي في</title>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
+    <title>بروفايل المستخدم - COBRA TV</title>
     <style>
-        :root {
-            --bg-color: #0b0b0f;
-            --card-bg: rgba(22, 22, 30, 0.85);
-            --primary-red: #e50914;
-            --primary-red-hover: #b80710;
-            --text-main: #ffffff;
-            --text-sub: #a0a0ab;
-            --border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(229, 9, 20, 0.25), transparent 70%),
-                radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.8), transparent);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        /* App Branding Container */
-        .brand-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .brand-logo {
-            width: 140px;
-            max-width: 80vw;
-            height: auto;
-            filter: drop-shadow(0 0 15px rgba(229, 9, 20, 0.4));
-        }
-
-        /* Profile Main Card */
-        .profile-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            width: 100%;
-            max-width: 420px;
-            padding: 32px 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(229, 9, 20, 0.1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
-        }
-
-        /* Avatar Container */
-        .avatar-wrapper {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 16px auto;
-        }
-
-        .avatar-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-red);
-            box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
-        }
-
-        /* User Info */
-        .user-fullname {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 4px;
-        }
-
-        .username-tag {
-            font-size: 0.95rem;
-            color: var(--primary-red);
-            direction: ltr;
-            display: inline-block;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .bio-text {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            margin-bottom: 24px;
-            line-height: 1.5;
-        }
-
-        /* Stats Row */
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 16px;
-            padding: 12px 8px;
-            margin-bottom: 28px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .stat-value {
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--text-main);
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            margin-top: 2px;
-        }
-
-        /* Action Buttons */
-        .btn-action {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 14px 20px;
-            background: var(--primary-red);
-            color: #fff;
-            border: none;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
-        }
-
-        .btn-action:hover {
-            background: var(--primary-red-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(229, 9, 20, 0.6);
-        }
-
-        .footer-note {
-            margin-top: 24px;
-            font-size: 0.8rem;
-            color: var(--text-sub);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #0d0d0e; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border-radius: 24px; padding: 32px 24px; width: 100%; max-width: 380px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .avatar-container { position: relative; width: 96dp; height: 96px; margin: 0 auto 16px; }
+        .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2px solid #ff0055; }
+        .name { font-size: 20px; font-weight: bold; margin-bottom: 4px; }
+        .username { color: #ff0055; font-size: 14px; margin-bottom: 12px; }
+        .bio { font-size: 13px; color: #a1a1aa; line-height: 1.5; margin-bottom: 24px; }
+        .stats { display: flex; justify-content: space-around; background: rgba(0,0,0,0.3); padding: 12px; border-radius: 16px; margin-bottom: 24px; }
+        .stat-item { display: flex; flex-direction: column; }
+        .stat-value { font-weight: bold; font-size: 16px; }
+        .stat-label { font-size: 11px; color: #a1a1aa; margin-top: 2px; }
+        .btn { display: block; width: 100%; padding: 14px; background: #ff0055; color: white; text-decoration: none; font-weight: bold; border-radius: 50px; transition: 0.3s; }
+        .btn:hover { background: #e0004c; transform: translateY(-2px); }
+        .loader { border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid #ff0055; border-radius: 50%; width: 30px; height: 30px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
-</head>
-<body>
 
-    <!-- Header Logo -->
-    <div class="brand-header">
-        <img src="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png" alt="Cobra TV Logo" class="brand-logo">
-    </div>
-
-    <!-- Main Profile Card -->
-    <div class="profile-card">
-        <div class="avatar-wrapper">
-            <img id="user-avatar" src="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png" alt="User Profile" class="avatar-img">
-        </div>
-
-        <h1 id="user-name" class="user-fullname">جاري التحميل...</h1>
-        <span id="user-handle" class="username-tag">@username</span>
-
-        <p id="page-message" class="bio-text">تابع أحدث مقاطع الفيديو الحصرية والافلام والمنشورات عبر تطبيق كوبرى تي في</p>
-
-        <!-- Stats Block -->
-        <div class="stats-container">
-            <div class="stat-item">
-                <span id="followers-count" class="stat-value">2.9K</span>
-                <span class="stat-label">متابع</span>
-            </div>
-            <div class="stat-item">
-                <span id="following-count" class="stat-value">28</span>
-                <span class="stat-label">يتابع</span>
-            </div>
-            <div class="stat-item">
-                <span id="likes-count" class="stat-value">1.7K</span>
-                <span class="stat-label">إعجاب</span>
-            </div>
-        </div>
-
-        <!-- Download / Open App Button -->
-        <a id="download-btn" href="#" class="btn-action">
-            <span>فتح في تطبيق COBRA TV</span>
-        </a>
-    </div>
-
-    <div class="footer-note">
-        تطبيق COBRA TV - جميع الحقوق محفوظة &copy; 2026
-    </div>
-
-    <!-- Firebase SDK Setup -->
+    <!-- Firebase Web SDK (v9) -->
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+        import { getFirestore, doc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-        // Your Web App's Firebase configuration
+        // ⚠️ استبدل البيانات دي ببيانات مشروعك من Firebase Console (Project Settings -> Web App)
         const firebaseConfig = {
-            apiKey: "AIzaSyCZzSbLegFJ_xaVVqtFWFUCu2WFOd42cF0",
-            authDomain: "cobra-tv-b1231.firebaseapp.com",
-            projectId: "cobra-tv-b1231",
-            storageBucket: "cobra-tv-b1231.firebasestorage.app",
-            messagingSenderId: "73044924945",
-            appId: "1:73044924945:web:4ed40ee2b6463b574e2fb0",
-            measurementId: "G-X5JQH06QNK"
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
         };
 
-        // Initialize Firebase & Firestore
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Get URL parameters or path (e.g. /u/username)
-        async function loadProfileData() {
-            const pathParts = window.location.pathname.split('/');
-            const usernameFromPath = pathParts[pathParts.length - 1]; // بياخد اليوزر من الرابط
+        async function fetchUserProfile() {
             const urlParams = new URLSearchParams(window.location.search);
-            const username = usernameFromPath || urlParams.get('u') || "appalaila";
+            const userQuery = urlParams.get('u');
 
-            try {
-                // Fetch user data from Firestore (مجموعة users)
-                const userDocRef = doc(db, "users", username);
-                const userSnap = await getDoc(userDocRef);
-
-                if (userSnap.exists()) {
-                    const data = userSnap.data();
-                    
-                    // UI Updates
-                    document.getElementById('user-name').innerText = data.name || username;
-                    document.getElementById('user-handle').innerText = `@${username}`;
-                    if (data.photoUrl) {
-                        document.getElementById('user-avatar').src = data.photoUrl;
-                    }
-                    if (data.followers) document.getElementById('followers-count').innerText = data.followers;
-                    if (data.following) document.getElementById('following-count').innerText = data.following;
-                    if (data.likes) document.getElementById('likes-count').innerText = data.likes;
-                } else {
-                    // Fallback Default Data
-                    document.getElementById('user-name').innerText = username;
-                    document.getElementById('user-handle').innerText = `@${username}`;
-                }
-            } catch (error) {
-                console.log("Error loading user data, showing fallback:", error);
-                document.getElementById('user-name').innerText = username;
-                document.getElementById('user-handle').innerText = `@${username}`;
+            if (!userQuery) {
+                showError("لم يتم العثور على اسم المستخدم");
+                return;
             }
 
-            // Deep link redirect setup for Android Intent
-            document.getElementById('download-btn').href = `cobratv://u/${username}`;
+            try {
+                let userData = null;
+
+                // 1. البحث كـ Document ID أولاً
+                const docRef = doc(db, "users", userQuery);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    userData = docSnap.data();
+                } else {
+                    // 2. لو مش Document ID ابحث عنه كـ username
+                    const q = query(collection(db, "users"), where("username", "==", userQuery));
+                    const querySnapshot = await getDocs(q);
+                    if (!querySnapshot.empty) {
+                        userData = querySnapshot.docs[0].data();
+                    }
+                }
+
+                if (userData) {
+                    renderUserData(userData, userQuery);
+                } else {
+                    showError("المستخدم غير موجود");
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+                showError("حدث خطأ أثناء تحميل البيانات");
+            }
         }
 
-        loadProfileData();
+        function renderUserData(data, fallbackQuery) {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("content").style.display = "block";
+
+            document.getElementById("displayName").innerText = data.displayName || data.name || fallbackQuery;
+            document.getElementById("username").innerText = "@" + (data.username || fallbackQuery);
+            document.getElementById("bio").innerText = data.bio || "مرحباً بك في بروفايلي على COBRA TV 🚀";
+            
+            // الصورة الشخصية
+            if (data.photoUrl || data.avatarUrl) {
+                document.getElementById("avatar").src = data.photoUrl || data.avatarUrl;
+            }
+
+            // الأرقام الحقيقية من فايربيز (لو مش موجودة يعرض 0)
+            document.getElementById("followersCount").innerText = formatNumber(data.followersCount || data.followers || 0);
+            document.getElementById("followingCount").innerText = formatNumber(data.followingCount || data.following || 0);
+            document.getElementById("likesCount").innerText = formatNumber(data.likesCount || data.likes || 0);
+
+            // رابط فتح التطبيق Deep Link
+            const appDeepLink = `cobratv://user?uid=${data.uid || fallbackQuery}`;
+            document.getElementById("openAppBtn").href = appDeepLink;
+        }
+
+        function showError(msg) {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("content").style.display = "block";
+            document.getElementById("displayName").innerText = msg;
+            document.getElementById("username").innerText = "";
+            document.getElementById("bio").innerText = "";
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num;
+        }
+
+        window.onload = fetchUserProfile;
     </script>
+</head>
+<body>
+
+    <div class="card">
+        <div id="loader" class="loader"></div>
+
+        <div id="content" style="display: none;">
+            <div class="avatar-container">
+                <img id="avatar" class="avatar" src="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png" alt="Avatar">
+            </div>
+
+            <h2 id="displayName" class="name">--</h2>
+            <p id="username" class="username">--</p>
+            <p id="bio" class="bio">--</p>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <span id="followersCount" class="stat-value">0</span>
+                    <span class="stat-label">متابع</span>
+                </div>
+                <div class="stat-item">
+                    <span id="followingCount" class="stat-value">0</span>
+                    <span class="stat-label">يتابع</span>
+                </div>
+                <div class="stat-item">
+                    <span id="likesCount" class="stat-value">0</span>
+                    <span class="stat-label">إعجاب</span>
+                </div>
+            </div>
+
+            <a id="openAppBtn" href="#" class="btn">فتح في تطبيق COBRA TV</a>
+        </div>
+    </div>
+
 </body>
 </html>
