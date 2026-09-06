@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Open Graph / WhatsApp Preview Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cobra TV">
+    <meta property="og:title" id="og-title" content="شاهد ملف الشخص على Cobra TV">
+    <meta property="og:description" id="og-desc" content="تابع أحدث مقاطع الفيديو والمنشورات على تطبيق كوبرى تي في">
+    <meta property="og:image" id="og-image" content="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="شاهد ملف الشخص على Cobra TV">
+    <meta name="twitter:description" id="twitter-desc" content="تابع أحدث مقاطع الفيديو والمنشورات على تطبيق كوبرى تي في">
+    <meta name="twitter:image" id="twitter-image" content="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png">
+
+    <title id="page-title">Cobra TV - كوبرى تي في</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0b0b0f;
+            --card-bg: rgba(22, 22, 30, 0.85);
+            --primary-red: #e50914;
+            --primary-red-hover: #b80710;
+            --text-main: #ffffff;
+            --text-sub: #a0a0ab;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(229, 9, 20, 0.25), transparent 70%),
+                radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.8), transparent);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* App Branding Container */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .brand-logo {
+            width: 140px;
+            max-width: 80vw;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(229, 9, 20, 0.4));
+        }
+
+        /* Profile Main Card */
+        .profile-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 420px;
+            padding: 32px 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(229, 9, 20, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-red), transparent);
+        }
+
+        /* Avatar Container */
+        .avatar-wrapper {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 16px auto;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-red);
+            box-shadow: 0 0 15px rgba(229, 9, 20, 0.5);
+        }
+
+        /* User Info */
+        .user-fullname {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .username-tag {
+            font-size: 0.95rem;
+            color: var(--primary-red);
+            direction: ltr;
+            display: inline-block;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .bio-text {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        /* Stats Row */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 16px;
+            padding: 12px 8px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            margin-top: 2px;
+        }
+
+        /* Action Buttons */
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--primary-red);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(229, 9, 20, 0.4);
+        }
+
+        .btn-action:hover {
+            background: var(--primary-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(229, 9, 20, 0.6);
+        }
+
+        .footer-note {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Logo -->
+    <div class="brand-header">
+        <img src="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png" alt="Cobra TV Logo" class="brand-logo">
+    </div>
+
+    <!-- Main Profile Card -->
+    <div class="profile-card">
+        <div class="avatar-wrapper">
+            <img id="user-avatar" src="https://res.cloudinary.com/mfkqydlq/image/upload/v1788100322/user_avatar_1788100316121.png" alt="User Profile" class="avatar-img">
+        </div>
+
+        <h1 id="user-name" class="user-fullname">جاري التحميل...</h1>
+        <span id="user-handle" class="username-tag">@username</span>
+
+        <p id="page-message" class="bio-text">تابع أحدث مقاطع الفيديو الحصرية والافلام والمنشورات عبر تطبيق كوبرى تي في</p>
+
+        <!-- Stats Block -->
+        <div class="stats-container">
+            <div class="stat-item">
+                <span id="followers-count" class="stat-value">2.9K</span>
+                <span class="stat-label">متابع</span>
+            </div>
+            <div class="stat-item">
+                <span id="following-count" class="stat-value">28</span>
+                <span class="stat-label">يتابع</span>
+            </div>
+            <div class="stat-item">
+                <span id="likes-count" class="stat-value">1.7K</span>
+                <span class="stat-label">إعجاب</span>
+            </div>
+        </div>
+
+        <!-- Download / Open App Button -->
+        <a id="download-btn" href="#" class="btn-action">
+            <span>فتح في تطبيق COBRA TV</span>
+        </a>
+    </div>
+
+    <div class="footer-note">
+        تطبيق COBRA TV - جميع الحقوق محفوظة &copy; 2026
+    </div>
+
+    <!-- Firebase SDK Setup -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Your Web App's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCZzSbLegFJ_xaVVqtFWFUCu2WFOd42cF0",
+            authDomain: "cobra-tv-b1231.firebaseapp.com",
+            projectId: "cobra-tv-b1231",
+            storageBucket: "cobra-tv-b1231.firebasestorage.app",
+            messagingSenderId: "73044924945",
+            appId: "1:73044924945:web:4ed40ee2b6463b574e2fb0",
+            measurementId: "G-X5JQH06QNK"
+        };
+
+        // Initialize Firebase & Firestore
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Get URL parameters or path (e.g. /u/username)
+        async function loadProfileData() {
+            const pathParts = window.location.pathname.split('/');
+            const usernameFromPath = pathParts[pathParts.length - 1]; // بياخد اليوزر من الرابط
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = usernameFromPath || urlParams.get('u') || "appalaila";
+
+            try {
+                // Fetch user data from Firestore (مجموعة users)
+                const userDocRef = doc(db, "users", username);
+                const userSnap = await getDoc(userDocRef);
+
+                if (userSnap.exists()) {
+                    const data = userSnap.data();
+                    
+                    // UI Updates
+                    document.getElementById('user-name').innerText = data.name || username;
+                    document.getElementById('user-handle').innerText = `@${username}`;
+                    if (data.photoUrl) {
+                        document.getElementById('user-avatar').src = data.photoUrl;
+                    }
+                    if (data.followers) document.getElementById('followers-count').innerText = data.followers;
+                    if (data.following) document.getElementById('following-count').innerText = data.following;
+                    if (data.likes) document.getElementById('likes-count').innerText = data.likes;
+                } else {
+                    // Fallback Default Data
+                    document.getElementById('user-name').innerText = username;
+                    document.getElementById('user-handle').innerText = `@${username}`;
+                }
+            } catch (error) {
+                console.log("Error loading user data, showing fallback:", error);
+                document.getElementById('user-name').innerText = username;
+                document.getElementById('user-handle').innerText = `@${username}`;
+            }
+
+            // Deep link redirect setup for Android Intent
+            document.getElementById('download-btn').href = `cobratv://u/${username}`;
+        }
+
+        loadProfileData();
+    </script>
+</body>
+</html>
